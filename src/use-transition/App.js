@@ -1,6 +1,6 @@
 import { useState, useTransition } from "react";
 import { updateQuantity } from "./api";
-import {useDebounce} from './useDebounce';
+import {useDebounce} from '../common/useDebounce';
 import Item from "./Item";
 import Total from "./Total";
 
