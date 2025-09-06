@@ -3,7 +3,7 @@ const intl = new Intl.NumberFormat("en-US", {
   currency: "USD"
 });
 
-export default function Total({quantity, isPending}) {
+export default function Total({ quantity, isPending }: { quantity: number, isPending: boolean }) {
   return (
     <div className="total">
       <span>Total:</span>

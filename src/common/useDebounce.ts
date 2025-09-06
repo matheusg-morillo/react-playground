@@ -9,6 +9,7 @@ function createPromise() {
   return { resolve, reject };
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const useDebounce = (func: (...args: any[]) => Promise<any>, timems: number) => {
   const timeoutRef = useRef<null | NodeJS.Timeout>(null);
   const promiseRef = useRef(createPromise());

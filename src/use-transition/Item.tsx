@@ -1,7 +1,7 @@
-import { startTransition } from "react";
+import React, { startTransition } from "react";
 
-export default function Item({action}) {
-  function handleChange(event) {
+export default function Item({ action }: { action: (...args: string[]) => Promise<void> }) {
+  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     // To expose an action prop, await the callback in startTransition.
     startTransition(async () => {
       await action(event.target.value);
