@@ -1,6 +1,6 @@
 import { useState, useTransition } from "react";
 import { updateQuantity } from "./api";
-import {useDebounce} from '../common/useDebounce';
+import { useDebounce } from '../common/useDebounce';
 import Item from "./Item";
 import Total from "./Total";
 
@@ -8,7 +8,7 @@ export default function App() {
   const [quantity, setQuantity] = useState(1);
   const [isPending, startTransition] = useTransition();
 
-  const updateQuantityAction = async newQuantity => {
+  const updateQuantityAction = async (newQuantity: number) => {
     // To access the pending state of a transition,
     // call startTransition again.
     startTransition(async () => {
@@ -24,7 +24,7 @@ export default function App() {
   return (
     <div>
       <h1>Checkout</h1>
-      <Item action={debouncedUpdateQuantity}/>
+      <Item action={debouncedUpdateQuantity} />
       <hr />
       <Total quantity={quantity} isPending={isPending} />
     </div>
