@@ -2,6 +2,7 @@ import React from "react"
 import { createContext, useContext } from "react"
 import type { Item } from "../../types"
 import { useStore } from "./store"
+import { getTotal } from "./logic"
 
 type CartContextType = {
   items: Item[]
@@ -10,6 +11,7 @@ type CartContextType = {
   toggleCart: () => void
   removeItem: (itemId: number) => void
   getCartProduct: (productId: number) => Item | undefined
+  getTotal: () => number
 }
 
 const contextInitialValue: CartContextType = {
@@ -21,6 +23,10 @@ const contextInitialValue: CartContextType = {
   getCartProduct: () => {
     console.warn("getCartProduct not implemented")
     return undefined
+  },
+  getTotal: () => {
+    console.warn("getTotal not implemented")
+    return 0
   },
 }
 
@@ -47,6 +53,10 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     return items.find((item) => item.product.id === productId)
   }
 
+  const getTotal_ = () => {
+    return getTotal(items)
+  }
+
   return (
     <CartContext.Provider
       value={{
@@ -56,6 +66,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         addItem,
         removeItem,
         getCartProduct,
+        getTotal: getTotal_,
       }}
     >
       {children}
