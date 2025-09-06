@@ -9,6 +9,7 @@ type CartContextType = {
   addItem: (item: Item) => void
   toggleCart: () => void
   removeItem: (itemId: number) => void
+  getCartProduct: (productId: number) => Item | undefined
 }
 
 const contextInitialValue: CartContextType = {
@@ -17,6 +18,10 @@ const contextInitialValue: CartContextType = {
   addItem: () => console.warn("addItem not implemented"),
   toggleCart: () => console.warn("toggleCart not implemented"),
   removeItem: () => console.warn("removeItem not implemented"),
+  getCartProduct: () => {
+    console.warn("getCartProduct not implemented")
+    return undefined
+  },
 }
 
 const CartContext = createContext<CartContextType>(contextInitialValue)
@@ -38,6 +43,10 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const addItem = useStore((state) => state.addItem)
   const removeItem = useStore((state) => state.removeItem)
 
+  const getCartProduct = (productId: number) => {
+    return items.find((item) => item.product.id === productId)
+  }
+
   return (
     <CartContext.Provider
       value={{
@@ -46,6 +55,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         open,
         addItem,
         removeItem,
+        getCartProduct,
       }}
     >
       {children}

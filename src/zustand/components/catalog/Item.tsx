@@ -8,12 +8,12 @@ type ItemProps = {
 export const Item = ({ product }: ItemProps) => {
   const { name, src, price } = product
 
-  const { addItem, items } = useCartContext()
+  const { addItem, items, getCartProduct } = useCartContext()
   const [quantity, setQuantity] = useState(0)
 
   const total = useMemo(
-    () => quantity + (items.find((item) => item.product.id === product.id)?.quantity || 0),
-    [items, quantity],
+    () => quantity + (getCartProduct(product.id)?.quantity || 0),
+    [items, quantity, product.id],
   )
 
   const onAddToCart = () => {
