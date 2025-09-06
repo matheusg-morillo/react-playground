@@ -1,36 +1,35 @@
-import { useState, useMemo } from "react";
-import type { Product } from "../../types";
-import { useCartContext } from "../cart";
+import { useState, useMemo } from "react"
+import type { Product } from "../../types"
+import { useCartContext } from "../cart"
 
 type ItemProps = {
   product: Product
 }
-export const Item = (
-  { product }: ItemProps
-) => {
-  const { name, src, price } = product;
+export const Item = ({ product }: ItemProps) => {
+  const { name, src, price } = product
 
-  const { addItem, items } = useCartContext();
-  const [quantity, setQuantity] = useState(0);
+  const { addItem, items } = useCartContext()
+  const [quantity, setQuantity] = useState(0)
 
-  const total = useMemo(() =>
-    quantity + (items.find((item) => item.product.id === product.id)?.quantity || 0),
-    [items, quantity]);
+  const total = useMemo(
+    () => quantity + (items.find((item) => item.product.id === product.id)?.quantity || 0),
+    [items, quantity],
+  )
 
   const onAddToCart = () => {
-    addItem({ product, quantity });
-    setQuantity(0);
-  };
+    addItem({ product, quantity })
+    setQuantity(0)
+  }
 
   const increment = () => {
-    if (total >= product.stock) return;
-    setQuantity((q) => q + 1);
+    if (total >= product.stock) return
+    setQuantity((q) => q + 1)
   }
 
   const decrement = () => {
-    if (quantity <= 0) return;
+    if (quantity <= 0) return
     setQuantity((q) => q - 1)
-  };
+  }
 
   return (
     <div className="flex flex-col border gap-4 rounded-lg p-4 shadow-lg">
@@ -43,9 +42,7 @@ export const Item = (
           onClick={onAddToCart}
           aria-disabled={quantity === 0}
         >
-          <a className="bg-blue-500 text-white px-4 py-2 rounded-lg">
-            Add to the cart
-          </a>
+          <a className="bg-blue-500 text-white px-4 py-2 rounded-lg">Add to the cart</a>
         </div>
         <div className="flex flex-row items-center gap-2 border rounded-lg justify-between">
           <div
@@ -66,5 +63,5 @@ export const Item = (
         </div>
       </div>
     </div>
-  );
+  )
 }

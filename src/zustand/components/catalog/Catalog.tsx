@@ -1,5 +1,5 @@
-import { producList } from "../../db/products";
-import { Item } from "./Item";
+import { producList } from "../../db/products"
+import { Item } from "./Item"
 
 export const Catalog = () => {
   return (
@@ -10,5 +10,5 @@ export const Catalog = () => {
         ))}
       </div>
     </div>
-  );
+  )
 }

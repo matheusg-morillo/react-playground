@@ -1,4 +1,4 @@
-import { Cart, CartProvider, Catalog, Header } from "./components";
+import { Cart, CartProvider, Catalog, Header } from "./components"
 
 export const Ecommerce = () => {
   return (
@@ -7,5 +7,5 @@ export const Ecommerce = () => {
       <Catalog />
       <Cart />
     </CartProvider>
-  );
+  )
 }

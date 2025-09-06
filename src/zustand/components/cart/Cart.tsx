@@ -1,12 +1,12 @@
-import { Items } from "./Items";
-import { Header } from './Header';
-import { Footer } from "./Footer";
-import { useCart } from "./CartContext";
+import { Items } from "./Items"
+import { Header } from "./Header"
+import { Footer } from "./Footer"
+import { useCart } from "./CartContext"
 
 export const Cart = () => {
   const { open } = useCart()
 
-  if (!open) return null;
+  if (!open) return null
 
   return (
     <div className="fixed top-0 right-0 w-1/3 h-full bg-white border-l p-4 shadow-lg">
@@ -18,5 +18,5 @@ export const Cart = () => {
         <Footer />
       </div>
     </div>
-  );
+  )
 }

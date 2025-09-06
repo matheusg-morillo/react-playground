@@ -1,2 +1,2 @@
-export type { CartStore, Item } from './cart';
-export type { Product } from './product';
+export type { CartStore, Item } from "./cart"
+export type { Product } from "./product"

@@ -1,27 +1,25 @@
-import { useRef } from 'react';
+import { useRef } from "react"
 
 function createPromise() {
-  let resolve, reject;
+  let resolve, reject
   new Promise((res, rej) => {
-    resolve = res;
-    reject = rej;
-  });
-  return { resolve, reject };
+    resolve = res
+    reject = rej
+  })
+  return { resolve, reject }
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const useDebounce = (func: (...args: any[]) => Promise<any>, timems: number) => {
-  const timeoutRef = useRef<null | NodeJS.Timeout>(null);
-  const promiseRef = useRef(createPromise());
+  const timeoutRef = useRef<null | NodeJS.Timeout>(null)
+  const promiseRef = useRef(createPromise())
 
   return (args: unknown[]) => {
-    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    if (timeoutRef.current) clearTimeout(timeoutRef.current)
 
     timeoutRef.current = setTimeout(() => {
-      func(args)
-        .then(promiseRef.current.resolve)
-        .catch(promiseRef.current.reject);
-      timeoutRef.current = null;
+      func(args).then(promiseRef.current.resolve).catch(promiseRef.current.reject)
+      timeoutRef.current = null
     }, timems)
   }
 }

@@ -1,3 +1,3 @@
-export * from './cart';
-export * from './catalog';
-export * from './header';
+export * from "./cart"
+export * from "./catalog"
+export * from "./header"

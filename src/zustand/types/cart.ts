@@ -1,14 +1,14 @@
-import type { Product } from "./product";
+import type { Product } from "./product"
 
 export type Item = {
-  product: Product;
-  quantity: number;
-};
+  product: Product
+  quantity: number
+}
 
 export type CartStore = {
-  items: Item[],
-  open: boolean,
-  addItem: (item: Item) => void,
-  toggleCart: () => void,
-  removeItem: (productId: number) => void,
-};
+  items: Item[]
+  open: boolean
+  addItem: (item: Item) => void
+  toggleCart: () => void
+  removeItem: (productId: number) => void
+}
