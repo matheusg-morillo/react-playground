@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import type { CartStore } from '../../types';
 
-const useCartStore = create<CartStore>((set) => ({
+const useStore = create<CartStore>((set) => ({
   items: [],
   open: false,
   addItem: (item) => set((state) => {
@@ -23,7 +23,13 @@ const useCartStore = create<CartStore>((set) => ({
     }
     return { items: [...state.items, item] }
   }),
+  removeItem: (productId: number) => set((state) => {
+    const items = state.items.filter(i => i.product.id !== productId);
+    return {
+      items: [...items],
+    }
+  }),
   toggleCart: () => set((state) => ({ open: !state.open })),
 }));
 
-export { useCartStore };
+export { useStore };

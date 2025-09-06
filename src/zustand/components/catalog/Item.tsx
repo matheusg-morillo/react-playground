@@ -8,13 +8,14 @@ type ItemProps = {
 export const Item = (
   { product }: ItemProps
 ) => {
+  const { name, src, price } = product;
+
   const { addItem, items } = useCartContext();
   const [quantity, setQuantity] = useState(0);
 
-  const { name, src, price } = product;
   const total = useMemo(() =>
     quantity + (items.find((item) => item.product.id === product.id)?.quantity || 0),
-  [items, quantity]);
+    [items, quantity]);
 
   const onAddToCart = () => {
     addItem({ product, quantity });
@@ -25,6 +26,7 @@ export const Item = (
     if (total >= product.stock) return;
     setQuantity((q) => q + 1);
   }
+
   const decrement = () => {
     if (quantity <= 0) return;
     setQuantity((q) => q - 1)
@@ -36,7 +38,11 @@ export const Item = (
       <img src={src} className="w-2xs h-40 rounded-lg object-contain" />
       <span>R$ {price}</span>
       <div className="flex flex-row items-center justify-between">
-        <div className="cursor-pointer hover:opacity-70" onClick={onAddToCart}>
+        <div
+          className="cursor-pointer hover:opacity-70 aria-disabled:opacity-70 aria-disabled:cursor-not-allowed"
+          onClick={onAddToCart}
+          aria-disabled={quantity === 0}
+        >
           <a className="bg-blue-500 text-white px-4 py-2 rounded-lg">
             Add to the cart
           </a>

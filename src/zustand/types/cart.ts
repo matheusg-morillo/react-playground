@@ -10,4 +10,5 @@ export type CartStore = {
   open: boolean,
   addItem: (item: Item) => void,
   toggleCart: () => void,
+  removeItem: (productId: number) => void,
 };
