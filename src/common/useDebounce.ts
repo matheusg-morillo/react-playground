@@ -9,11 +9,11 @@ function createPromise() {
   return { resolve, reject };
 }
 
-export const useDebounce = (func, timems) => {
-  const timeoutRef = useRef(null);
+export const useDebounce = (func: (args: unknown[]) => Promise<unknown>, timems: number) => {
+  const timeoutRef = useRef<null | NodeJS.Timeout>(null);
   const promiseRef = useRef(createPromise());
 
-  return (args) => {
+  return (args: unknown[]) => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
 
     timeoutRef.current = setTimeout(() => {
