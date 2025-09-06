@@ -1,4 +1,4 @@
-export async function updateQuantity(newQuantity: number) {
+export async function updateQuantity(newQuantity: number): Promise<number> {
   return new Promise((resolve) => {
     console.log("API: Updating quantity to", newQuantity);
     // Simulate a slow network request.
