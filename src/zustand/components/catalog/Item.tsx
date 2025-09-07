@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react"
 import type { Product } from "../../types"
-import { useCartContext } from "../cart"
+import { useCartContent } from "../../components/"
 
 type ItemProps = {
   product: Product
@@ -8,7 +8,7 @@ type ItemProps = {
 export const Item = ({ product }: ItemProps) => {
   const { name, src, price } = product
 
-  const { addItem, items, getCartProduct } = useCartContext()
+  const { addItem, items, getCartProduct } = useCartContent()
   const [quantity, setQuantity] = useState(0)
 
   const total = useMemo(

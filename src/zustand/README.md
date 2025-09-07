@@ -30,6 +30,14 @@ The key concepts studied were:
 -   Integrating Zustand's state with business logic (stock validation).
 -   Using the Context API as a provider to distribute specific parts of the store, optimizing how components access functions and data.
 
+## ⚡ Performance Optimization
+
+To improve performance and prevent unnecessary re-renders, the cart's state was strategically separated.
+
+The context for the cart's content (the items within it) was decoupled from the cart's UI state (whether it is open or closed). By doing this, only the components that need to be aware of the cart's open/closed status are wrapped within that specific context provider.
+
+This architectural choice prevents a change in the UI state (e.g., opening the cart) from causing the entire application or unrelated components (like the product list) to re-render.
+
 ## ⚙️ Installation and Setup
 
 To run this project locally, follow the steps below:

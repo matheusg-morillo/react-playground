@@ -1,2 +1,3 @@
 export { Cart } from "./Cart"
-export { CartProvider, useCart as useCartContext } from "./CartContext"
+export { CartContentProvider, useCartContent } from "./CartContentContext"
+export { CartStateProvider, useCartState } from "./CartStateContext"

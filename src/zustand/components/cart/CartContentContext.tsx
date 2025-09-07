@@ -6,9 +6,7 @@ import { getTotal } from "./logic"
 
 type CartContextType = {
   items: Item[]
-  open: boolean
   addItem: (item: Item) => void
-  toggleCart: () => void
   removeItem: (itemId: number) => void
   getCartProduct: (productId: number) => Item | undefined
   getTotal: () => number
@@ -16,9 +14,7 @@ type CartContextType = {
 
 const contextInitialValue: CartContextType = {
   items: [],
-  open: false,
   addItem: () => console.warn("addItem not implemented"),
-  toggleCart: () => console.warn("toggleCart not implemented"),
   removeItem: () => console.warn("removeItem not implemented"),
   getCartProduct: () => {
     console.warn("getCartProduct not implemented")
@@ -30,10 +26,10 @@ const contextInitialValue: CartContextType = {
   },
 }
 
-const CartContext = createContext<CartContextType>(contextInitialValue)
+const CartContentContext = createContext<CartContextType>(contextInitialValue)
 
-export const useCart = () => {
-  const context = useContext(CartContext)
+export const useCartContent = () => {
+  const context = useContext(CartContentContext)
 
   if (!context) {
     console.warn("useCartContext must be used within a CartProvider")
@@ -42,10 +38,8 @@ export const useCart = () => {
   return context
 }
 
-export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const toggleCart = useStore((state) => state.toggleCart)
+export const CartContentProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const items = useStore((state) => state.items)
-  const open = useStore((state) => state.open)
   const addItem = useStore((state) => state.addItem)
   const removeItem = useStore((state) => state.removeItem)
 
@@ -58,11 +52,9 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }
 
   return (
-    <CartContext.Provider
+    <CartContentContext.Provider
       value={{
-        toggleCart,
         items,
-        open,
         addItem,
         removeItem,
         getCartProduct,
@@ -70,6 +62,6 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
       }}
     >
       {children}
-    </CartContext.Provider>
+    </CartContentContext.Provider>
   )
 }

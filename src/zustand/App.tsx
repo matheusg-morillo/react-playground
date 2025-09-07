@@ -1,11 +1,13 @@
-import { Cart, CartProvider, Catalog, Header } from "./components"
+import { Cart, CartContentProvider, CartStateProvider, Catalog, Header } from "./components"
 
 export const Ecommerce = () => {
   return (
-    <CartProvider>
-      <Header />
+    <CartContentProvider>
+      <CartStateProvider>
+        <Header />
+        <Cart />
+      </CartStateProvider>
       <Catalog />
-      <Cart />
-    </CartProvider>
+    </CartContentProvider>
   )
 }
