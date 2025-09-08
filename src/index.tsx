@@ -1,6 +1,6 @@
 import React from "react"
 import ReactDOM from "react-dom/client"
-import { Ecommerce } from "./zustand/App"
+import { Ecommerce } from "./ecommerce/App"
 import "./index.css"
 
 const root = ReactDOM.createRoot(document.getElementById("root")!)
