@@ -1,7 +1,7 @@
-import { useCartState } from "./CartStateContext"
+import { useCartStore } from "./CartContext"
 
 export const Header = () => {
-  const { toggleCart } = useCartState()
+  const toggleCart = useCartStore((state) => state.toggleCart)
 
   return (
     <div>

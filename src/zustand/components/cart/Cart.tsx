@@ -1,12 +1,10 @@
 import { Items } from "./Items"
 import { Header } from "./Header"
 import { Footer } from "./Footer"
-import { useCartState } from "./CartStateContext"
+import { useCartStore } from "./CartContext"
 
 export const Cart = () => {
-  const { open } = useCartState()
-
-  console.log("Cart rendered", open)
+  const open = useCartStore((state) => state.open)
 
   if (!open) return null
 

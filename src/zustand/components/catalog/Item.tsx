@@ -1,19 +1,22 @@
 import { useState, useMemo } from "react"
+import { useCartStore } from "../cart/CartContext"
 import type { Product } from "../../types"
-import { useCartContent } from "../../components/"
 
 type ItemProps = {
   product: Product
 }
 export const Item = ({ product }: ItemProps) => {
   const { name, src, price } = product
-
-  const { addItem, items, getCartProduct } = useCartContent()
   const [quantity, setQuantity] = useState(0)
+  const { addItem, currentItem: stockUsedByCart } = useCartStore((state) => ({
+    addItem: state.addItem,
+    // Select only the current product in the cart to avoid re-renders when other products are added/removed
+    currentItem: state.items.find((item) => item.product.id === product.id),
+  }))
 
   const total = useMemo(
-    () => quantity + (getCartProduct(product.id)?.quantity || 0),
-    [items, quantity, product.id],
+    () => (stockUsedByCart?.quantity || 0) + quantity,
+    [quantity, stockUsedByCart],
   )
 
   const onAddToCart = () => {

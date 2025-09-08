@@ -1,7 +1,7 @@
-import { useCartState } from "./CartStateContext"
+import { useCartStore } from "./CartContext"
 
 export const CartToggle = () => {
-  const { toggleCart } = useCartState()
+  const toggleCart = useCartStore((state) => state.toggleCart)
 
   return (
     <div className="text-2xl cursor-pointer p-4" onClick={toggleCart} title="Toggle Cart">

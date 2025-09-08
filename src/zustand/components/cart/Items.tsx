@@ -1,7 +1,10 @@
-import { useCartContent } from "./CartContentContext"
+import { useCartStore } from "./CartContext"
 
 export const Items = () => {
-  const { items, removeItem } = useCartContent()
+  const { items, removeItem } = useCartStore((store) => ({
+    items: store.items,
+    removeItem: store.removeItem,
+  }))
 
   const onRemove = (id: number) => {
     removeItem(id)
